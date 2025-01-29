@@ -1,0 +1,33 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the content stretches to full height */
+}
+
+main {
+  flex: 1; /* Push the footer to the bottom by taking available space */
+}
+
+/* Ensure the page fills the viewport height */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure wrapper covers full viewport height */
+}
+
+.content {
+  flex: 1; /* Pushes the footer to the bottom when content is short */
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
