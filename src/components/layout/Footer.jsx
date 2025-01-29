@@ -20,7 +20,7 @@ export default function Footer() {
               <li><Link to="/" className='text-gray-400 hover:text-white'>About</Link></li>
               <li><Link to="/tool" className='text-gray-400 hover:text-white'>Clinician Tool</Link></li>
               <li><Link to="/" className='text-gray-400 hover:text-white'>Recommendations</Link></li>
-              <li><Link to="/" className='text-gray-400 hover:text-white'>Resources</Link></li>
+              <li><Link to="/resources" className='text-gray-400 hover:text-white'>Resources</Link></li>
             </ul>
           </div>
           
@@ -29,11 +29,11 @@ export default function Footer() {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <Mail className="h-5 w-5" />
-                <span className="text-gray-400">contact@latinxassessments.com</span>
+                <span className="text-gray-400">abc@contact.com</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-5 w-5" />
-                <span className="text-gray-400">(555) 123-4567</span>
+                <span className="text-gray-400">123-456</span>
               </li>
             </ul>
           </div>
