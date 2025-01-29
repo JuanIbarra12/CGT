@@ -85,6 +85,9 @@ export default function Navbar({authenticated}) {
         <div className="px-4 pt-2 pb-3 space-y-1">
           <Link to="/" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Home</Link>
           <Link to="/tool" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Clinical Assessment Tool</Link>
+          <Link to="/" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Recommendations</Link>
+          <Link to="/resources" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Resources</Link>
+
           {/* Auth buttons for mobile */}
           <div className="mt-4 space-y-2 px-3">
             {(authenticated) ? 
