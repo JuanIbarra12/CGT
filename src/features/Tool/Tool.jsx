@@ -29,7 +29,7 @@ export default function Tool() {
             <br /><br /><br />
             <div className="content max-w-3xl mx-auto px-4 py-8">
                 <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Clinician Assessment Guide</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Clinical Assessment Tool</h2>
                     
                     <form onSubmit={handleSubmit} className="space-y-6">
                         Spanish Fluency 
@@ -105,7 +105,7 @@ export default function Tool() {
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                             >
                                 <option value="">Select language</option>
-                                <option value="native">Native Language</option>
+                                <option value="spanish">Spanish</option>
                                 <option value="english">English</option>
                                 <option value="both">Both</option>
                             </select>
@@ -114,7 +114,7 @@ export default function Tool() {
 
                         <div className="space-y-4">
                             <label className="block text-lg font-medium text-gray-900">
-                            3. Is there an interpreter available?
+                            3. Is there certified interpreter available?
                             </label>
                             <div className="space-x-6">
                             <label className="inline-flex items-center">

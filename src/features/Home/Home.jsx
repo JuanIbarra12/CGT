@@ -99,7 +99,7 @@ console.log(token)
                   alt="Assessment Guide" 
                   className="w-full h-48 object-cover rounded-lg mb-6"
                 />
-                <h3 className="text-xl font-semibold mb-4">Clinical Guide</h3>
+                <h3 className="text-xl font-semibold mb-4">Clinical Assessment Tool</h3>
                 <p className="text-gray-600 mb-4">Step-by-step guidance for conducting culturally competent assessments.</p>
                 <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">Learn More →</a>
               </div>

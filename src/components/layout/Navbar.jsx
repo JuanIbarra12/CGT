@@ -19,7 +19,7 @@ export default function Navbar({authenticated}) {
           {/* md = min-width: 768px */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/">Home</Link>
-            <Link to="/tool">Clinician Guide Tool</Link>
+            <Link to="/tool">Clinical Assessment Tool</Link>
             <a href="/#resources" className="text-gray-700 hover:text-indigo-600 transition-colors">Recommendations</a>
             <a href="/resources" className="text-gray-700 hover:text-indigo-600 transition-colors">Resources</a>
             
@@ -84,7 +84,7 @@ export default function Navbar({authenticated}) {
       >
         <div className="px-4 pt-2 pb-3 space-y-1">
           <Link to="/" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Home</Link>
-          <Link to="/tool" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Clinician Guide Tool</Link>
+          <Link to="/tool" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Clinical Assessment Tool</Link>
           {/* Auth buttons for mobile */}
           <div className="mt-4 space-y-2 px-3">
             {(authenticated) ? 
