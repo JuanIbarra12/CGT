@@ -2,25 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Brain, Users, BookOpen, BarChart, ExternalLink } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 function Home() {
-  const [data, setData] = useState(null);
-    const { token } = useAuth();
-console.log(token)
-  useEffect(() => {
-    fetch('http://localhost:8080', {
-      method: 'GET',
-      credentials: 'include', // Ensure cookies are sent with the request
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json(); // Parse JSON if the response is valid
-      })
-      .then((data) => console.log(data)) // Log the data
-      .catch((error) => console.error('Error:', error)); // Handle errors
-  }, []);
-
-
   return (
     <>
         <main className='content'>
@@ -99,7 +80,7 @@ console.log(token)
                   alt="Assessment Guide" 
                   className="w-full h-48 object-cover rounded-lg mb-6"
                 />
-                <h3 className="text-xl font-semibold mb-4">Clinical Assessment Tool</h3>
+                <h3 className="text-xl font-semibold mb-4">Clinical Guide Tool</h3>
                 <p className="text-gray-600 mb-4">Step-by-step guidance for conducting culturally competent assessments.</p>
                 <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">Learn More →</a>
               </div>

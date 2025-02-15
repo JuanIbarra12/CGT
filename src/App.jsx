@@ -9,7 +9,6 @@ import Login from './features/Login/Login';
 import SignUp from './features/SignUp/SignUp';
 import Resources from './features/Resources/Resources';
 import { AuthProvider } from './context/AuthContext';
-import PrivateRoute from './components/PrivateRoute';
 import ProtectedRoute from './ProtectedRoute';
 
 function App() {
@@ -25,7 +24,7 @@ function App() {
                         path="/"
                         element={
                             <>
-                              <Navbar authenticated={true} />
+                              <Navbar />
                               <Home />
                             </>                       
                     }
@@ -34,12 +33,11 @@ function App() {
                         path="/tool"
                         element={
                           <>
-                              <Navbar authenticated={true} />
+                            {/* <ProtectedRoute> */}
+                              <Navbar />
                               <Tool />
+                            {/* </ProtectedRoute> */}
                           </>
-                            // <ProtectedRoute>
-                               
-                            // </ProtectedRoute>
                         }
                     />
                     {/* <Route path="/tool" element={<Tool />} /> */}

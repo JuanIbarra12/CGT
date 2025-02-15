@@ -1,13 +1,14 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 export default function Login () {
     const [formData, setFormData] = useState({
-        name: '',
+        email: '',
         password: '',
       });
-    
+      const [isAuthenticated, setIsAuthenticated] = useState(null);
+
       const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -15,16 +16,9 @@ export default function Login () {
           [name]: value,
         }));
       };
-    
-      // const handleSubmit = (e) => {
-      //   e.preventDefault();
-      //   // Replace this with backend authentication logic
-      //   console.log('Login data submitted:', formData);
-      //   alert('Login successful!');
-      // };
 
       const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
     
         try {
           const response = await fetch('http://localhost:8080/login', {
@@ -37,29 +31,52 @@ export default function Login () {
           });
     
           const result = await response.json();
-          console.log(result); // { message: 'Data received successfully' }
-          alert(result.message);
+          window.location.href="http://localhost:5173/tool"          
         } catch (error) {
           console.error('Error sending data:', error);
           alert('Failed to send data');
         }
       };
+
+      useEffect(() => {
+        const checkAuth = async () => {
+          try {
+            const response = await fetch("http://localhost:8080/auth/check", {
+              method: "GET",
+              credentials: "include", // Include HTTP-only cookies
+            });
+    
+              const data = await response.json();
+              console.log(data)
+              setIsAuthenticated(data.authenticated);
+            
+    
+          } catch (error) {
+            console.error("Error verifying authentication:", error);
+            setIsAuthenticated(false);
+          }
+        };
+    
+        checkAuth();
+      }, []);
     
       return (
+        <>
+        {isAuthenticated?window.location.href="http://localhost:5173/tool":
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
           <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
             <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={(e)=>{e.preventDefault();handleSubmit();}} className="space-y-6">
               {/* Username Field */}
               <div>
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                  Username
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email
                 </label>
                 <input
-                  type="text"
-                  name="name"
-                  id="username"
-                  value={formData.username}
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={formData.email}
                   onChange={handleChange}
                   placeholder="Enter your username"
                   className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
@@ -98,5 +115,7 @@ export default function Login () {
             </form>
           </div>
         </div>
+        }
+        </>
       );
 }
