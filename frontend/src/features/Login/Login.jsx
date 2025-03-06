@@ -31,7 +31,8 @@ export default function Login () {
           });
     
           const result = await response.json();
-          window.location.href=import.meta.env.VITE_API_URL+"/tool"          
+          
+          window.location.href=window.location.origin+"/tool"          
         } catch (error) {
           console.error('Error sending data:', error);
           alert('Failed to send data');
