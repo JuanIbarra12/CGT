@@ -38,7 +38,7 @@ function SignUp() {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
     
-          window.location.href = import.meta.env.VITE_API_URL
+          window.location.href = `${window.location.origin}/tool`
           
         } catch (error) {
           console.error('Error fetching data:', error);
