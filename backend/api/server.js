@@ -15,10 +15,28 @@ const { AutoEncryptionLoggerLevel } = require('mongodb');
 app.use(cookieParser());//Parses cookies sent with requests, making them accessible via req.cookies.
 
 
-app.use(cors({
-  origin: process.env.FRONTEND || "*", // Allow requests from your React frontend,
-  credentials: true, // Allow cookies to be sent with requests
-}));//allows  frontend to accesst.
+app.use(
+  cors({
+    origin: process.env.FRONTEND || "*", // Allow frontend domain
+    credentials: true, // Allow cookies and headers
+    methods: "GET,POST,PUT,DELETE,OPTIONS", // Allow these methods
+    allowedHeaders: "Content-Type, Authorization", // Allow custom headers
+  })
+);
+
+// ✅ Set CORS Headers in Every Response (Extra Protection)
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND || "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true"); // Allow cookies
+
+  // Handle CORS Preflight Requests
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204); // No Content
+  }
+  next();
+});
 
 //DB Connection
 mongoose.connect(process.env.MONGO_URI).then(()=>{
