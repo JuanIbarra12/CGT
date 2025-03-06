@@ -72,8 +72,8 @@ app.post("/signup", async (req, res) => {
         // ✅ Set HTTP-only cookie & send JSON response
         res.status(200).cookie("accessToken", token, {
           httpOnly: true,
-          secure: true,
-          // secure: process.env.NODE_ENV === "production", // ✅ Secure only in production
+          // secure: true,
+          secure: process.env.NODE_ENV === "production", // ✅ Secure only in production
           sameSite: "none",
           maxAge: 60 * 60 * 1000, // 1 hour
         }).json({ message: "Signed Up successfully" });  
@@ -103,8 +103,8 @@ app.post("/login", async (req, res) => {
        // ✅ Set HTTP-only cookie & send JSON response
         res.status(200).cookie("accessToken", token, {
         httpOnly: true,
-        secure: true,
-        // secure: process.env.NODE_ENV === "production", // ✅ Secure only in production
+        // secure: true,
+        secure: process.env.NODE_ENV === "production", // ✅ Secure only in production
         sameSite: "none",
         maxAge: 60 * 60 * 1000, // 1 hour
       }).json({ message: "Logged in successfully" });
@@ -148,6 +148,8 @@ app.get("/recommendations", authenticateToken, async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server running on http://localhost:${PORT}`);
+// });
+
+module.exports = app;
