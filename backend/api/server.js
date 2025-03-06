@@ -16,7 +16,7 @@ app.use(cookieParser());//Parses cookies sent with requests, making them accessi
 
 
 app.use(cors({
-  origin: process.env.FRONTEND || *, // Allow requests from your React frontend,
+  origin: process.env.FRONTEND || "*", // Allow requests from your React frontend,
   credentials: true, // Allow cookies to be sent with requests
 }));//allows  frontend to accesst.
 
