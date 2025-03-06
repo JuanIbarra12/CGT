@@ -66,6 +66,11 @@ app.get("/auth/check", authenticateToken, (req, res) => {
   res.status(200).json({ authenticated: true, email: req.user.email });
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ message: "Server is running!" });
+});
+
+
 // Protected Route Example - to protect backend
 app.get("/protected-backend", authenticateToken, (req, res) => {
   res.json({ message: "Access granted!" });
@@ -106,7 +111,7 @@ app.post("/login", async (req, res) => {
       // Get user data from the request body
       const data = req.body;
       // Check if the user already exists using the findOne() method
-      const existingUser = await User.findOne({ email: data.email });
+      const existingUser = await User.findOne({ email: data.email }).lean();
 
       if (!existingUser || !await bcrypt.compare(data.password, existingUser.password)) {
          // Don't reveal user existence
@@ -158,7 +163,7 @@ app.get("/recommendations", authenticateToken, async (req, res) => {
   try {
       const token = req.cookies.accessToken; // Get the token from cookies
       const decoded = jwt.verify(token, SECRET_KEY);
-      const tools = await ToolData.find({ clinician: decoded.email });
+      const tools = await ToolData.find({ clinician: decoded.email }).lean();
       res.status(200).json({ tools });
   } catch (err) {
       console.error("Tool fetching error:", err);
@@ -169,5 +174,10 @@ app.get("/recommendations", authenticateToken, async (req, res) => {
 // app.listen(PORT, () => {
 //     console.log(`Server running on http://localhost:${PORT}`);
 // });
+
+// ✅ Catch-All Route (404)
+app.get("*", (req, res) => {
+  res.status(404).json({ error: "Not Found" });
+});
 
 module.exports = app;
