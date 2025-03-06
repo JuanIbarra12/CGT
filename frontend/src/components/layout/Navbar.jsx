@@ -48,7 +48,7 @@ export default function Navbar() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      window.location.href = "http://localhost:5173/";
+      window.location.href = import.meta.env.VITE_API_URL;
       
     } catch (error) {
       console.error('Error fetching data:', error);

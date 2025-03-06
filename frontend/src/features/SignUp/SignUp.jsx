@@ -38,7 +38,7 @@ function SignUp() {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
     
-          window.location.href = "http://localhost:5173/tool"
+          window.location.href = import.meta.env.VITE_API_URL
           
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -69,7 +69,7 @@ function SignUp() {
     
       return (
         <>
-          {isAuthenticated ? window.location.href="http://localhost:5173/tool" : 
+          {isAuthenticated ? window.location.href=import.meta.env.VITE_API_URL : 
                     <div className="min-h-screen flex items-center justify-center bg-gray-100">
                     <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
                       <h1 className="text-2xl font-bold text-center mb-6">Sign Up</h1>
