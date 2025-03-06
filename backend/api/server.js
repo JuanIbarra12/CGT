@@ -142,7 +142,11 @@ app.post("/login", async (req, res) => {
 
 // Logout route to clear the cookie
 app.post("/logout", (req, res) => {
-  res.clearCookie("accessToken"); // Clear the token cookie
+  res.clearCookie("accessToken", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
+  }); // Clear the token cookie
   res.json({ message: "Logged out successfully" });
 });
 
