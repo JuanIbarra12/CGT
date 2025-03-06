@@ -41,12 +41,21 @@ function App() {
                           </>
                         }
                     />
+                    <Route
+                        path="/recommendations"
+                        element={
+                          <>
+                            <ProtectedRoute>
+                              <Navbar />
+                              <Recommendations />
+                            </ProtectedRoute>
+                          </>
+                        }
+                    />
                     {/* <Route path="/tool" element={<Tool />} /> */}
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/resources" element={<><Navbar/><Resources /></>} />
-                    <Route path="/recommendations" element={<><Navbar/><Recommendations /></>} />
-
                 </Routes>
                 <Footer />
             </Router>
