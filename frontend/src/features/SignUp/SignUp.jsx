@@ -69,7 +69,7 @@ function SignUp() {
     
       return (
         <>
-          {isAuthenticated ? window.location.href=import.meta.env.VITE_API_URL : 
+          {isAuthenticated ? window.location.href = window.location.origin+"/tool" : 
                     <div className="min-h-screen flex items-center justify-center bg-gray-100">
                     <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
                       <h1 className="text-2xl font-bold text-center mb-6">Sign Up</h1>

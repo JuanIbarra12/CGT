@@ -32,7 +32,7 @@ export default function Login () {
     
           const result = await response.json();
           
-          window.location.href=window.location.origin+"/tool"          
+          window.location.href = window.location.origin+"/tool"          
         } catch (error) {
           console.error('Error sending data:', error);
           alert('Failed to send data');
@@ -63,7 +63,7 @@ export default function Login () {
     
       return (
         <>
-        {isAuthenticated?window.location.href=import.meta.env.VITE_API_URL:
+        {isAuthenticated?window.location.href = window.location.origin+"/tool":
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
           <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
             <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
