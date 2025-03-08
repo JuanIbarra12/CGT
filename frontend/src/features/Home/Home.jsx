@@ -82,7 +82,7 @@ function Home() {
                 />
                 <h3 className="text-xl font-semibold mb-4">Clinical Guide Tool</h3>
                 <p className="text-gray-600 mb-4">Step-by-step guidance for conducting culturally competent assessments.</p>
-                <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">Learn More →</a>
+                {/* <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">Learn More →</a> */}
               </div>
               <div className="bg-white p-6 rounded-xl shadow-lg">
                 <img 
@@ -92,7 +92,7 @@ function Home() {
                 />
                 <h3 className="text-xl font-semibold mb-4">Testing Recommendations</h3>
                 <p className="text-gray-600 mb-4">Curated selection of appropriate assessment tools and methods.</p>
-                <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">Explore Tools →</a>
+                {/* <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">Explore Tools →</a> */}
               </div>
               <div className="bg-white p-6 rounded-xl shadow-lg">
                 <img 
@@ -102,7 +102,7 @@ function Home() {
                 />
                 <h3 className="text-xl font-semibold mb-4">Resource Database</h3>
                 <p className="text-gray-600 mb-4">Access to latest research and evidence-based practices.</p>
-                <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">Access Research →</a>
+                {/* <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">Access Research →</a> */}
               </div>
             </div>
           </div>

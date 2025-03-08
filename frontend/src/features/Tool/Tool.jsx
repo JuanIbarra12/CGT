@@ -37,6 +37,8 @@ export default function Tool() {
 
          const data = await res.json();
          console.log('Success:', data);
+
+         window.location.href = window.location.origin + "/recommendations"
         }catch(error){
               console.error('Error:', error);
         };

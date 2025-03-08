@@ -104,6 +104,9 @@ app.post("/signup", async (req, res) => {
         console.error("Signup error:", err.message);
         res.status(500).json({ error: "Failed to sign up" });
     }
+
+    // frontend and backend are on different domains or ports, that means you're dealing with cross-origin requests, and sameSite: "None" is the correct configuration to use for cookies.
+    // However, when using sameSite: "None", cookies must be marked as secure, meaning your site must be served over HTTPS for this to work. This is likely why you're encountering issues locally, as local development servers typically run on HTTP (not HTTPS).
 });
 
 app.post("/login", async (req, res) => {
@@ -175,13 +178,14 @@ app.get("/recommendations", authenticateToken, async (req, res) => {
   }
 });
 
-// app.listen(PORT, () => {
-//     console.log(`Server running on http://localhost:${PORT}`);
-// });
 
 // ✅ Catch-All Route (404)
 app.get("*", (req, res) => {
   res.status(404).json({ error: "Not Found" });
 });
+
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
 
 module.exports = app;
