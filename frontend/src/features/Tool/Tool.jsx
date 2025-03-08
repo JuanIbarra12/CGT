@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default function Tool() {
     const [formData, setFormData] = useState({
@@ -56,6 +57,10 @@ export default function Tool() {
         <>
             <br /><br /><br />
             <div className="content max-w-3xl mx-auto px-4 py-8">
+                <Helmet>
+                    <title>Tool</title>
+                    <meta name="description" content="Learn more about us" />
+                </Helmet>
                 <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Clinical Guide Tool</h2>
                     

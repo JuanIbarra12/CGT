@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Brain, Users, BookOpen, BarChart, ExternalLink } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet';
+
 function Home() {
   return (
     <>
         <main className='content'>
+          <Helmet>
+            <title>Home Page</title>
+            <meta name="description" content="This is the home page" />
+          </Helmet>
         {/* Hero Section */}
         <section id="home" className="pt-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

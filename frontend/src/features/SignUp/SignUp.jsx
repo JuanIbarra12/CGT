@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 function SignUp() {
     const [formData, setFormData] = useState({
@@ -71,6 +72,10 @@ function SignUp() {
         <>
           {isAuthenticated ? window.location.href = window.location.origin+"/tool" : 
                     <div className="min-h-screen flex items-center justify-center bg-gray-100">
+                      <Helmet>
+                        <title>Sign Up</title>
+                        <meta name="description" content="Learn more about us" />
+                      </Helmet>
                     <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
                       <h1 className="text-2xl font-bold text-center mb-6">Sign Up</h1>
                       <form onSubmit={(e)=>{e.preventDefault();sendDataToBackend();}} className="space-y-6">

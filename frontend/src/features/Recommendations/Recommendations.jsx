@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BookOpen, Brain, Languages, Users, AlertCircle, Check, X, GraduationCap, FileText, TestTube } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 
 export default function App() {
   const [toolData, setToolData] = useState([{}]);
@@ -27,6 +28,10 @@ export default function App() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-24">
+      <Helmet>
+        <title>Recommendations</title>
+        <meta name="description" content="Learn more about us" />
+      </Helmet>
       <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Assessment Recommendations</h2>
       
       <div className="space-y-12">

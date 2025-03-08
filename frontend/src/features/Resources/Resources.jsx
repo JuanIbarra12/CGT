@@ -21,10 +21,15 @@ import {
   ScrollText,
   BookOpenCheck
 } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 
 export default function ResourcesPage() {
   return (
     <section id="resources" className="py-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      <Helmet>
+        <title>Resources</title>
+        <meta name="description" content="Learn more about us" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="flex justify-center mb-4">

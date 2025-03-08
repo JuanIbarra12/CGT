@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 export default function Login () {
     const [formData, setFormData] = useState({
@@ -29,9 +30,7 @@ export default function Login () {
             body: JSON.stringify(formData),
             credentials: "include", // Include cookies
           });
-    
-          const result = await response.json();
-          
+              
           window.location.href = window.location.origin+"/tool"          
         } catch (error) {
           console.error('Error sending data:', error);
@@ -65,6 +64,10 @@ export default function Login () {
         <>
         {isAuthenticated?window.location.href = window.location.origin+"/tool":
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
+          <Helmet>
+            <title>Login</title>
+            <meta name="description" content="Learn more about us" />
+          </Helmet>
           <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
             <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
             <form onSubmit={(e)=>{e.preventDefault();handleSubmit();}} className="space-y-6">
