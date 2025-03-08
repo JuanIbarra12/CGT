@@ -73,6 +73,7 @@ export default function Tool() {
                                 name="clinicianAssessing"
                                 onChange={handleChange}
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                required
                                 >
                                 <option value="">Enter assessment focus</option>
                                 <option value="Clinical & Medical Uses">Clinical & Medical Uses</option>
@@ -91,6 +92,7 @@ export default function Tool() {
                                 name="areaOfUse"
                                 onChange={handleChange}
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                required
                                 >
                                     {formData.clinicianAssessing === "Clinical & Medical Uses" ? (
                                         <>
@@ -140,6 +142,7 @@ export default function Tool() {
                                 name="providedCondition"
                                 onChange={handleChange}
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                required
                                 >
                                     {formData.areaOfUse === "Diagnosing Cognitive Disorders" ? (
                                         <>
@@ -236,6 +239,7 @@ export default function Tool() {
                                 value={true}
                                 onChange={handleChange}
                                 className="form-radio h-4 w-4 text-indigo-600"
+                                required
                                 />
                                 <span className="ml-2">Yes</span>
                             </label>
@@ -246,6 +250,7 @@ export default function Tool() {
                                 value={false}
                                 onChange={handleChange}
                                 className="form-radio h-4 w-4 text-indigo-600"
+                                required
                                 />
                                 <span className="ml-2">No</span>
                             </label>
@@ -265,6 +270,7 @@ export default function Tool() {
                                     name="clientLanguageStatus"
                                     onChange={handleChange}
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                    required
                                     >
                                     <option value="">Select status</option>
                                     <option value="Spanish">Monolingual Spanish</option>
@@ -283,6 +289,7 @@ export default function Tool() {
                                     onChange={handleChange}
                                     placeholder="Enter client's ethnicity"
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                    required
                                     />
                                 </div>
                             </div>
@@ -295,6 +302,7 @@ export default function Tool() {
                                     name="educationalLanguage"
                                     onChange={handleChange}
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                    required
                                 >
                                     <option value="">Select language</option>
                                     <option value="Spanish">Spanish</option>
@@ -311,6 +319,7 @@ export default function Tool() {
                                     name="languageOfTest"
                                     onChange={handleChange}
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                    required
                                 >
                                     <option value="">Select language</option>
                                     <option value="Spanish">Spanish</option>
@@ -330,6 +339,7 @@ export default function Tool() {
                                 value={true}
                                 onChange={handleChange}
                                 className="form-radio h-4 w-4 text-indigo-600"
+                                required
                                 />
                                 <span className="ml-2">Yes</span>
                             </label>
@@ -340,6 +350,7 @@ export default function Tool() {
                                 value={false}
                                 onChange={handleChange}
                                 className="form-radio h-4 w-4 text-indigo-600"
+                                required
                                 />
                                 <span className="ml-2">No</span>
                             </label>
