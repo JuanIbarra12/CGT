@@ -16,9 +16,10 @@ function App() {
   
   return (
     <>
-      <div className="wrapper bg-white">
+      <div className="min-h-screen flex flex-col bg-white">
         <AuthProvider>
             <Router>
+              <main className='flex-grow'>
                 <Routes>
                     {/* <Route path="/" element={<Home />}/> */}
                     <Route
@@ -57,7 +58,8 @@ function App() {
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/resources" element={<><Navbar/><Resources /></>} />
                 </Routes>
-                <Footer />
+              </main>
+              <Footer />
             </Router>
         </AuthProvider>
       </div>
