@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -12,27 +13,28 @@ const ProtectedRoute = ({ children }) => {
           credentials: "include", // Include HTTP-only cookies
         });
 
-        // if (response.ok) {
-          const data = await response.json();
-          setIsAuthenticated(data.authenticated);
-        // } else {
-        //   setIsAuthenticated(false);
-        // }
+        const data = await response.json();
+        setIsAuthenticated(data.authenticated);
+        
+        if (!data.authenticated) {
+          navigate('/login', { replace: true });
+        }
       } catch (error) {
         console.error("Error verifying authentication:", error);
         setIsAuthenticated(false);
+        navigate('/login', { replace: true });
       }
     };
 
     checkAuth();
-  }, []);
+  }, [navigate]);
 
   if (isAuthenticated === null) {
     // Show a loading spinner or placeholder while the check is in progress
     return <div>Loading...</div>;
   }
 
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  return isAuthenticated ? children : null;
 };
 
 export default ProtectedRoute;
