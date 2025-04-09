@@ -12,8 +12,8 @@ const ToolDataSchema = new mongoose.Schema({
   providedCondition: {
     type: String,
     required: true,
-  },languageStatus
-  : {
+  },
+  languageStatus: {
     type: Boolean,
     required: true,
   },

@@ -62,8 +62,9 @@ function authenticateToken(req, res, next) {
 }
 
 //frontend protection
-app.get("/auth/check", authenticateToken, (req, res) => {
-  res.status(200).json({ authenticated: true, email: req.user.email });
+app.get("/auth/check", authenticateToken, async (req, res) => {
+  const recommendationCount = await ToolData.countDocuments({ clinician: req.user.email });
+  res.status(200).json({ authenticated: true, email: req.user.email, recommendationCount });
 });
 
 app.get("/health", (req, res) => {
