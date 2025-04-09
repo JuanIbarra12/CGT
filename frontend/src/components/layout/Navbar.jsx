@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [recommendations, setRecommendations] = useState(null);
 
     useEffect(() => {
       const checkAuth = async () => {
@@ -16,7 +17,7 @@ export default function Navbar() {
   
             const data = await response.json();
             setIsAuthenticated(data.authenticated);
-          
+            setRecommendations(data.recommendationCount);
   
         } catch (error) {
           console.error("Error verifying authentication:", error);
@@ -38,8 +39,6 @@ export default function Navbar() {
         credentials: "include", // ✅ Include credentials
       });
 
-
-
       // credentials: "include" ensures that:
       // ✅ The browser sends cookies (e.g., accessToken) with the request.
       // ✅ The browser accepts cookies sent from the server.
@@ -60,13 +59,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
-            <span className="text-xl font-bold text-indigo-600">Latinx Testing Solutions</span>
+            <span className="cursor-pointer text-xl font-bold text-indigo-600" onClick={()=>{window.location.href = `${window.location.origin}`;}}>Latinx Testing Solutions</span>
           </div>
           {/* md = min-width: 768px */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/">Home</Link>
             <Link to="/tool">Clinical Guide Tool</Link>
-            <Link to="/recommendations">Recommendations</Link>
+            {(recommendations)?<Link to="/recommendations">Recommendations</Link>:""}
             <Link to="/resources">Resources</Link>
             
             <div className="flex items-center space-x-4 ml-4">
@@ -131,7 +130,7 @@ export default function Navbar() {
         <div className="px-4 pt-2 pb-3 space-y-1">
           <Link to="/" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Home</Link>
           <Link to="/tool" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Clinical Guide Tool</Link>
-          <Link to="/recommendations" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Recommendations</Link>
+          {(recommendations)?<Link to="/recommendations" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Recommendations</Link>:""}
           <Link to="/resources" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Resources</Link>
 
           {/* Auth buttons for mobile */}
