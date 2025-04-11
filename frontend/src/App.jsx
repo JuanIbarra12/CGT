@@ -12,6 +12,10 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './ProtectedRoute';
 import Recommendations from './features/Recommendations/Recommendations';
 import ScrollToTop from './components/layout/ScrollToTop';
+import CognitiveTesting from './features/Tests/CognitiveTesting';
+import CulturalCompetency from './features/Tests/CulturalCompetency';
+import ResearchData from './features/Tests/ResearchData';
+import FullResearch from './features/Tests/FullResearch';
 
 function App() {
   
@@ -59,6 +63,11 @@ function App() {
                       <Route path="/login" element={<Login />} />
                       <Route path="/signup" element={<SignUp />} />
                       <Route path="/resources" element={<><Navbar/><Resources /></>} />
+                      <Route path="/cognitive-testing" element={<><Navbar/><CognitiveTesting /></>} />
+                      <Route path="/cultural-competency" element={<><Navbar/><CulturalCompetency /></>} />
+                      <Route path="/research-data" element={<><Navbar/><ResearchData /></>} />
+                      <Route path="/full-research" element={<><Navbar/><FullResearch /></>} />
+                      <Route path="*" element={<><Navbar /><p className='flex items-center justify-center py-64 text-center text-[70px]'>404 Not Found</p></>} />
                   </Routes>
               </main>
               <Footer />

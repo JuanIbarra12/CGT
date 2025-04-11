@@ -44,27 +44,27 @@ function Home() {
                 <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
                   <p className="text-red-700 font-semibold">Only 5.5% of psychologists can provide services in Spanish, leaving a vast population underserved.</p>
                 </div>
-                <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium flex items-center">
+                <a href="/full-research" className="text-indigo-600 hover:text-indigo-700 font-medium flex items-center">
                   Read the Full Research <ExternalLink className="ml-2 h-4 w-4" />
                 </a>
               </div>
               <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-xl shadow-lg">
+                <div className="cursor-pointer bg-white p-6 rounded-xl shadow-lg" onClick={() => window.location.href = "/cognitive-testing"}>
                   <Brain className="h-12 w-12 text-indigo-600 mb-4" />
                   <h3 className="font-semibold mb-2">Cognitive Testing</h3>
                   <p className="text-gray-600">Specialized assessment tools for diverse populations</p>
                 </div>
-                <div className="bg-white p-6 rounded-xl shadow-lg">
+                <div className="cursor-pointer bg-white p-6 rounded-xl shadow-lg" onClick={() => window.location.href = "/cultural-competency"}>
                   <Users className="h-12 w-12 text-indigo-600 mb-4" />
                   <h3 className="font-semibold mb-2">Cultural Competency</h3>
                   <p className="text-gray-600">Understanding cultural nuances in assessment</p>
                 </div>
-                <div className="bg-white p-6 rounded-xl shadow-lg">
+                <div className="cursor-pointer bg-white p-6 rounded-xl shadow-lg" onClick={() => window.location.href = "/resources"}>
                   <BookOpen className="h-12 w-12 text-indigo-600 mb-4" />
                   <h3 className="font-semibold mb-2">Resources</h3>
                   <p className="text-gray-600">Comprehensive guides and materials</p>
                 </div>
-                <div className="bg-white p-6 rounded-xl shadow-lg">
+                <div className="cursor-pointer bg-white p-6 rounded-xl shadow-lg" onClick={() => window.location.href = "/research-data"}>
                   <BarChart className="h-12 w-12 text-indigo-600 mb-4" />
                   <h3 className="font-semibold mb-2">Research Data</h3>
                   <p className="text-gray-600">Evidence-based methodologies</p>

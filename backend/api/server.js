@@ -91,8 +91,7 @@ app.post("/signup", async (req, res) => {
         const token = jwt.sign(tokenPayload, SECRET_KEY, {
             expiresIn: "1h", // Token expires in 1 hour
         });
-
-        console.log(token)
+        
         // ✅ Set HTTP-only cookie & send JSON response
         res.status(200).cookie("accessToken", token, {
           httpOnly: true,
@@ -134,8 +133,7 @@ app.post("/login", async (req, res) => {
         secure: process.env.NODE_ENV === "production", // ✅ Secure only in production
         sameSite: "none",
         maxAge: 60 * 60 * 1000, // 1 hour
-      }).json({ message: "Logged in successfully" });
-
+      }).json({ message: "Logged in successfully", authenticated: true }); // Send a JSON response with the token
       //json need to be passed to send a cookie usually
       // CORS is necessary when the frontend and backend are on different origins (domains or ports). sameSite: "Strict" is permitted to the frontend domain only
   } catch (err) {
@@ -157,7 +155,7 @@ app.post("/logout", (req, res) => {
 app.post("/tool", authenticateToken, async (req, res) => {
   try {
       const data = req.body;
-      console.log(data)
+      await ToolData.deleteOne({ clinician: req.user.email });
       const toolData = new ToolData(data);
       await toolData.save();
       res.status(200).json({ message: "Tool Data added successfully" });

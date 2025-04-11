@@ -36,11 +36,13 @@ export default function Login () {
             }
 
             const data = await response.json();
+            console.log(data);
             if (data.authenticated) {
                 navigate('/tool', { replace: true });
             } else {
                 throw new Error('Authentication failed');
             }
+            
         } catch (error) {
             console.error('Error sending data:', error);
             alert('Failed to login. Please check your credentials.');
@@ -67,7 +69,7 @@ export default function Login () {
                             id="email"
                             value={formData.email}
                             onChange={handleChange}
-                            placeholder="Enter your username"
+                            placeholder="Enter your email"
                             className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                             required
                         />

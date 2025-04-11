@@ -32,19 +32,18 @@ export default function App() {
         <title>Recommendations</title>
         <meta name="description" content="Learn more about us" />
       </Helmet>
-      <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Assessment Recommendations</h2>
+      <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Assessment Recommendation</h2>
       
       <div className="space-y-12">
       {toolData.map((caseStudy, index) => (
         <div className='border-[10px] p-10' key={index}>
-          <h1 className='font-bold'>Recommendation #{index + 1}</h1>
           <ol style={{ listStyleType: "decimal" }}>
               <li>Conduct cultural interview.</li>
               <li>Use cultural assessment.</li>
               
                 {
                   (!caseStudy["languageStatus"]) ?//if (no)
-                     (!caseStudy["certifiedInterpreter"])? <li>Use verbal measure.</li> //if (no)
+                     (!caseStudy["certifiedInterpreter"])? <li>Use non-verbal measure.</li> //if (no)
                     :  
                       (caseStudy["clientLanguageStatus"] === caseStudy["languageOfTest"] || caseStudy["clientLanguageStatus"] === "Bilingual")?""
                     : <li>Use certified interpreter</li> 
@@ -53,13 +52,13 @@ export default function App() {
               
               <li>
                { (caseStudy.providedCondition === "Dementia & Mild Cognitive Impairment (MCI)")? 
-                    "Use MoCA, MMSE"
+                    "Use MoCA, MMSE."
                : (caseStudy.providedCondition === "Traumatic Brain Injury (TBI)") ?
-                    "Use Trail Making Test (TMT)"
+                    "Use Trail Making Test (TMT)."
                : (caseStudy.providedCondition === "Schizophrenia & Psychotic Disorders") ?
                     "Use Wisconsin Card Sorting Test (WCST) and Stroop Test."
                : (caseStudy.providedCondition === "ADHD") ?
-                    "Use TMT"
+                    "Use TMT."
                :
                     "No normed test."
                }
