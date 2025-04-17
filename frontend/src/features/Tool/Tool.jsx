@@ -47,10 +47,21 @@ export default function Tool() {
     
       const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
-          ...prev,
-          [name]: value,
-        }));
+        setFormData((prev) => {
+            let updatedForm = { ...prev, [name]: value };
+        
+            // Reset dependent fields
+            if (name === "clinicianAssessing") {
+              updatedForm.areaOfUse = "";
+              updatedForm.providedCondition = "";
+            }
+        
+            if (name === "areaOfUse") {
+              updatedForm.providedCondition = "";
+            }
+        
+            return updatedForm;
+          });
       };
 
       return (
@@ -72,6 +83,7 @@ export default function Tool() {
                             <select
                                 name="clinicianAssessing"
                                 onChange={handleChange}
+                                value={formData.clinicianAssessing} // ✅ THIS IS THE KEY
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                 required
                                 >
@@ -91,6 +103,7 @@ export default function Tool() {
                             <select
                                 name="areaOfUse"
                                 onChange={handleChange}
+                                value={formData.areaOfUse} // ✅ THIS IS THE KEY
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                 required
                                 >
@@ -112,20 +125,17 @@ export default function Tool() {
                                         <>
                                             <option value="">Choose an assessment area</option>
                                             <option value="Employment & Professional Assessments">Employment & Professional Assessments</option>
-                                            <option value="Disability & Workers' Compensation Evaluations">Disability & Workers' Compensation Evaluations</option>
                                         </>
                                     ): formData.clinicianAssessing == "Legal & Forensic Uses" ? (
                                         <>
                                             <option value="">Choose an assessment area</option>
                                             <option value="Competency & Legal Responsibility Evaluations">Competency & Legal Responsibility Evaluations</option>
                                             <option value="Criminal & Civil Cases">Criminal & Civil Cases</option>
-                                            <option value="Cognitive Testing in Immigration Cases">Cognitive Testing in Immigration Cases</option>
                                         </>
                                     ): formData.clinicianAssessing == "Research & Experimental Uses" ? (
                                         <>
                                             <option value="">Choose an assessment area</option>                
                                             <option value="Studying Cognitive Development & Aging">Studying Cognitive Development & Aging</option>
-                                            <option value="Drug & Treatment Effectiveness">Drug & Treatment Effectiveness</option>
                                             <option value="Brain Injury & Rehabilitation Research">Brain Injury & Rehabilitation Research</option>
                                         </>
                                     ): (
@@ -140,6 +150,7 @@ export default function Tool() {
                             </label>
                             <select
                                 name="providedCondition"
+                                value={formData.providedCondition} // ✅ THIS IS THE KEY
                                 onChange={handleChange}
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                 required
@@ -150,6 +161,7 @@ export default function Tool() {
                                             <option value="Dementia & Mild Cognitive Impairment (MCI)">Dementia & Mild Cognitive Impairment (MCI)</option>
                                             <option value="Traumatic Brain Injury (TBI)">Traumatic Brain Injury (TBI)</option>
                                             <option value="Stroke & Neurological Disorders">Stroke & Neurological Disorders</option>
+                                            <option value="Parkinsons Disease">Parkinsons Disease</option>
                                         </>
                                     ) : formData.areaOfUse === "Mental Health Assessments" ? (
                                         <>
@@ -158,6 +170,7 @@ export default function Tool() {
                                             <option value="Depression">Depression</option>
                                             <option value="Anxiety Disorders">Anxiety Disorders</option>
                                             <option value="ADHD (Attention-Deficit/Hyperactivity Disorder)">ADHD (Attention-Deficit/Hyperactivity Disorder)</option>
+                                            <option value="Autism Spectrum">Autism Spectrum</option>
                                         </>
                                     ) : formData.areaOfUse == "Pre-Surgical Evaluations" ? (
                                         <>
@@ -173,10 +186,9 @@ export default function Tool() {
                                     ): formData.areaOfUse == "Intelligence & Giftedness Testing" ? (
                                         <>
                                             <option value="">Provide condition</option>                
-                                            <option value="IQ Tests">IQ Tests</option>
+                                            <option value="Cognitive Abilities">Cognitive Abilities</option>
                                         </>
-                                    ):
-                                    formData.areaOfUse == "Autism Spectrum Disorder (ASD) Evaluations" ? (
+                                    ): formData.areaOfUse == "Autism Spectrum Disorder (ASD) Evaluations" ? (
                                         <>
                                             <option value="">Provide condition</option>
                                             <option value="Autism Spectrum Disorder (ASD) Evaluations">Autism Spectrum Disorder (ASD) Evaluations</option>
@@ -283,14 +295,31 @@ export default function Tool() {
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Ethnicity
                                     </label>
-                                    <input
-                                    type="text"
+                                    <select
                                     name="ethnicity"
                                     onChange={handleChange}
-                                    placeholder="Enter client's ethnicity"
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                     required
-                                    />
+                                >
+                                    <option value="">Select Ethnicity</option>
+                                    <option value="American">American</option>
+                                    <option value="Ecuadorian">Ecuadorian</option>
+                                    <option value="Spanish">Spanish</option>
+                                    <option value="Mexican">Mexican</option>
+                                    <option value="Argentinian">Argentinian</option>
+                                    <option value="Puerto Rican">Puerto Rican</option>
+                                    <option value="Colombian">Colombian</option>
+                                    <option value="Peruvian">Peruvian</option>
+                                    <option value="Venezuelan">Venezuelan</option>
+                                    <option value="Bolivian">Bolivian</option>
+                                    <option value="Cuban">Cuban</option>
+                                    <option value="Salvadoran">Salvadoran</option>
+                                    <option value="Guatemalan">Guatemalan</option>
+                                    <option value="Honduran">Honduran</option>
+                                    <option value="Paraguayan">Paraguayan</option>
+                                    <option value="Chilean">Chilean</option>
+                                    <option value="Other">Other</option>
+                                </select>
                                 </div>
                             </div>
 
