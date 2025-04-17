@@ -126,7 +126,7 @@ export default function App() {
                   })()
                 ) : (
                   caseStudy.clientLanguageStatus === caseStudy.languageOfTest || caseStudy.clientLanguageStatus === "Bilingual" ? null : (
-                    <li>Use certified interpreter</li>
+                    <li>Use certified interpreter.</li>
                   )
                 )
               ) : null}
