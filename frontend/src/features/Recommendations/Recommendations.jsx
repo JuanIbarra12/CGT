@@ -4,22 +4,23 @@ import { Helmet } from 'react-helmet';
 
 export default function App() {
   const [toolData, setToolData] = useState([{}]);
-  useEffect(() => {
-    const list = document.querySelectorAll('ol');
-    const items = document.querySelectorAll('li');
-    console.log(items[0].innerText)
-    items.forEach((li) => {
-     if (li.innerText.includes("No normed test")) {
-        const listItem = document.createElement('li');
-        listItem.textContent = 'Consider referring out.';
-        list[0].appendChild(listItem)
-      }
+  // useEffect(() => {
+  //   const list = document.querySelectorAll('ol');
+  //   const items = document.querySelectorAll('li');
+  //   console.log(items[0].innerText)
+  //   items.forEach((li) => {
+  //    if (li.innerText.includes("No normed test")) {
+  //       const listItem = document.createElement('li');
+  //       listItem.textContent = 'Consider referring out.';
+  //       list[0].appendChild(listItem)
+  //     }
 
-      if (li.innerText.includes("null")) {
-        li.innerText = 'Consider referring out.';
-      }
-    });
-  }, [toolData]);
+  //     if (li.innerText.includes("null")) {
+  //       li.innerText = 'Consider referring out.';
+  //     }
+  //   });
+  // }, [toolData]);
+  
   useEffect(()=>{
     console.log("Hi")
     const f = async () => {
@@ -96,6 +97,7 @@ export default function App() {
                     }
 
                     if (
+                      c === "Alzheimers" ||
                       c === "Dyslexia & Reading Disorders" ||
                       c === "Math & Writing Disorders"
                     ) {
@@ -178,9 +180,27 @@ export default function App() {
                     (["Argentinian", "Bolivian", "Chilean", "Cuban", "Salvadoran", "Guatemalan", "Honduran", "Paraguayan", "Mexican", "Spanish", "Puerto Rican", "Peruvian"].includes(caseStudy.ethnicity))?`Use Stroop Test – Spanish Norms for Traumatic Brain Injury ${caseStudy.ethnicity} version.`:
                     "Use NEUROPSI: Brief Neuropsychological Battery in Spanish and Stroop Test – Spanish Norms for Traumatic Brain Injury US/Adapted measure, if available."
                :
+                 (caseStudy.providedCondition === "Competency & Legal Responsibility Evaluations")?
+                    <>
+                      Use adapted versions:
+                      <ol style={{ listStyleType: "disc", marginLeft: "20px" }}>
+                        <li>MacArthur Competence Assessment Tool for Treatment (MacCAT-T) - Spanish Version</li>
+                        <li>Fitness Interview Test - Revised (FIT-R) - Spanish Translation</li>
+                        <li>Escala de Inteligencia Wechsler para Adultos - Tercera Edición (EIWA-III)</li>
+                        <li>Batería IV Woodcock-Muñoz - Pruebas de Habilidades Cognitivas</li>
+                        <li>Minnesota Multiphasic Personality Inventory-2 (MMPI-2) - Spanish Version</li>
+                      </ol>
+                    </>                    
+               :
                  "No normed test." + `${(caseStudy.languageStatus)?" Use translated test.":""}`
                }
               </li>:""}
+
+              {
+                (caseStudy.languageStatus === false && caseStudy.clientLanguageStatus === "Spanish" && caseStudy.certifiedInterpreter === false)?
+                  <li>Consider referring out.</li>
+                :""
+              }
               
             </ol>
         </div>

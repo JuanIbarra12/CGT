@@ -112,7 +112,7 @@ export default function Tool() {
                                             <option value="">Choose an assessment area</option>
                                             <option value="Diagnosing Cognitive Disorders">Diagnosing Cognitive Disorders</option>
                                             <option value="Mental Health Assessments">Mental Health Assessments</option>
-                                            <option value="Pre-Surgical Evaluations">Pre-Surgical Evaluations</option>
+                                            {/* <option value="Pre-Surgical Evaluations">Pre-Surgical Evaluations</option> */}
                                         </>
                                     ) : formData.clinicianAssessing === "Educational & Developmental Uses" ? (
                                         <>
@@ -162,6 +162,7 @@ export default function Tool() {
                                             <option value="Traumatic Brain Injury (TBI)">Traumatic Brain Injury (TBI)</option>
                                             <option value="Stroke & Neurological Disorders">Stroke & Neurological Disorders</option>
                                             <option value="Parkinsons Disease">Parkinsons Disease</option>
+                                            <option value="Alzheimers">Alzheimers</option>
                                         </>
                                     ) : formData.areaOfUse === "Mental Health Assessments" ? (
                                         <>
@@ -171,11 +172,6 @@ export default function Tool() {
                                             <option value="Anxiety Disorders">Anxiety Disorders</option>
                                             <option value="ADHD (Attention-Deficit/Hyperactivity Disorder)">ADHD (Attention-Deficit/Hyperactivity Disorder)</option>
                                             <option value="Autism Spectrum">Autism Spectrum</option>
-                                        </>
-                                    ) : formData.areaOfUse == "Pre-Surgical Evaluations" ? (
-                                        <>
-                                            <option value="">Provide condition</option>
-                                            <option value="Before brain surgery">Before brain surgery</option>
                                         </>
                                     ): formData.areaOfUse == "Diagnosing Learning Disabilities" ? (
                                         <>

@@ -31,7 +31,6 @@ const ToolDataSchema = new mongoose.Schema({
   },
   educationalLanguage: {
     type: String,
-    required: true,
   },
   certifiedInterpreter: {
     type: Boolean,
