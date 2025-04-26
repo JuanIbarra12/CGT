@@ -82,34 +82,36 @@ app.post("/signup", async (req, res) => {
       // Get user data from the request body
       const data = req.body;
       console.log(data);
-      // Create and save the user (this creates the database and collection if they don't exist)
+
+      // Check if the email already exists
+      const existingUser = await User.findOne({ email: data.email });
+      if (existingUser) {
+          return res.status(400).json({ error: "Email already exists" });
+      }
+
+      // Create and save the user
       const hashedPassword = await bcrypt.hash(data.password, 10);
       const newUser = new User({ ...data, password: hashedPassword });
-      if(newUser.email === data.email){
-        return res.status(400).json({ error: "Email already exists" });
-      }
-      await newUser.save()
+      const result = await newUser.save();
+
       // Create a token with non-sensitive information (e.g., user ID, email)
-      const tokenPayload = { _id: newUser._id, email: newUser.email }
+      const tokenPayload = { _id: newUser._id, email: newUser.email };
       const token = jwt.sign(tokenPayload, SECRET_KEY, {
           expiresIn: "1h", // Token expires in 1 hour
       });
-      
-      // ✅ Set HTTP-only cookie & send JSON response
+
+      // Set HTTP-only cookie & send JSON response
       res.status(200).cookie("accessToken", token, {
-        httpOnly: true,
-        // secure: true,
-        secure: process.env.NODE_ENV === "production", // ✅ Secure only in production
-        sameSite: "lax",
-        maxAge: 60 * 60 * 1000, // 1 hour
-      }).json({ message: "Signed Up successfully" });  
-    } catch (err) {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production", // Secure only in production
+          sameSite: "lax",
+          maxAge: 60 * 60 * 1000, // 1 hour
+      }).json({ message: "Signed Up successfully" });
+
+  } catch (err) {
       console.error("Signup error:", err.message);
       res.status(500).json({ error: "Failed to sign up" });
   }
-
-  // frontend and backend are on different domains or ports, that means you're dealing with cross-origin requests, and sameSite: "None" is the correct configuration to use for cookies.
-  // However, when using sameSite: "None", cookies must be marked as secure, meaning your site must be served over HTTPS for this to work. This is likely why you're encountering issues locally, as local development servers typically run on HTTP (not HTTPS).
 });
 
 app.post("/login", async (req, res) => {
@@ -280,11 +282,10 @@ module.exports = app;
 //         // Create and save the user (this creates the database and collection if they don't exist)
 //         const hashedPassword = await bcrypt.hash(data.password, 10);
 //         const newUser = new User({ ...data, password: hashedPassword });
-//         if(newUser.email === data.email){
+//         const result = await newUser.save();
+//         if(!result){
 //           return res.status(400).json({ error: "Email already exists" });
-//         }
-//         await newUser.save()
-//         // Create a token with non-sensitive information (e.g., user ID, email)
+//         }        // Create a token with non-sensitive information (e.g., user ID, email)
 //         const tokenPayload = { _id: newUser._id, email: newUser.email }
 //         const token = jwt.sign(tokenPayload, SECRET_KEY, {
 //             expiresIn: "1h", // Token expires in 1 hour
@@ -302,9 +303,6 @@ module.exports = app;
 //         console.error("Signup error:", err.message);
 //         res.status(500).json({ error: "Failed to sign up" });
 //     }
-
-//     // frontend and backend are on different domains or ports, that means you're dealing with cross-origin requests, and sameSite: "None" is the correct configuration to use for cookies.
-//     // However, when using sameSite: "None", cookies must be marked as secure, meaning your site must be served over HTTPS for this to work. This is likely why you're encountering issues locally, as local development servers typically run on HTTP (not HTTPS).
 // });
 
 // app.post("/login", async (req, res) => {
