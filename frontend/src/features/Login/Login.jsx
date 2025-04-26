@@ -1,53 +1,54 @@
 import React from 'react'
-import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 export default function Login () {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: Yup.object({
+            email: Yup.string()
+                .email('Invalid email address')
+                .required('Required'),
+            password: Yup.string()
+                .min(6, 'Password must be at least 6 characters')
+                .required('Required'),
+        }),
+        onSubmit: async (values) => {
+            try {
+                const response = await fetch(import.meta.env.VITE_API_URL+'/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(values),
+                    credentials: "include", // Include cookies
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log(data);
+                if (data.authenticated) {
+                    navigate('/tool', { replace: true });
+                } else {
+                    throw new Error('Authentication failed');
+                }
+                
+            } catch (error) {
+                console.error('Error sending data:', error);
+                alert('Failed to login. Please check your credentials.');
+            }
+        },
     });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        try {
-            const response = await fetch(import.meta.env.VITE_API_URL+'/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-                credentials: "include", // Include cookies
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log(data);
-            if (data.authenticated) {
-                navigate('/tool', { replace: true });
-            } else {
-                throw new Error('Authentication failed');
-            }
-            
-        } catch (error) {
-            console.error('Error sending data:', error);
-            alert('Failed to login. Please check your credentials.');
-        }
-    };
     
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -57,7 +58,7 @@ export default function Login () {
             </Helmet>
             <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
                 <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={formik.handleSubmit} className="space-y-6">
                     {/* Username Field */}
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -67,12 +68,13 @@ export default function Login () {
                             type="email"
                             name="email"
                             id="email"
-                            value={formData.email}
-                            onChange={handleChange}
+                            {...formik.getFieldProps('email')}
                             placeholder="Enter your email"
                             className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                            required
                         />
+                        {formik.touched.email && formik.errors.email ? (
+                            <div className="text-red-500 text-sm">{formik.errors.email}</div>
+                        ) : null}
                     </div>
 
                     {/* Password Field */}
@@ -84,12 +86,13 @@ export default function Login () {
                             type="password"
                             name="password"
                             id="password"
-                            value={formData.password}
-                            onChange={handleChange}
+                            {...formik.getFieldProps('password')}
                             placeholder="Enter your password"
                             className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                            required
                         />
+                        {formik.touched.password && formik.errors.password ? (
+                            <div className="text-red-500 text-sm">{formik.errors.password}</div>
+                        ) : null}
                     </div>
 
                     {/* Submit Button */}
