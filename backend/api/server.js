@@ -104,7 +104,7 @@ app.post("/signup", async (req, res) => {
       res.status(200).cookie("accessToken", token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production", // Secure only in production
-          sameSite: "lax",
+          sameSite: "none",
           maxAge: 60 * 60 * 1000, // 1 hour
       }).json({ message: "Signed Up successfully" });
 
