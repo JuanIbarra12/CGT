@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 export default function Login () {
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const formik = useFormik({
@@ -82,14 +83,23 @@ export default function Login () {
                         <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                             Password
                         </label>
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            {...formik.getFieldProps('password')}
-                            placeholder="Enter your password"
-                            className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                        />
+                        <div className="relative">
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                name="password"
+                                id="password"
+                                {...formik.getFieldProps('password')}
+                                placeholder="Enter your password"
+                                className="mt-1 block w-full p-2 pr-10 border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute inset-y-0 right-2 flex items-center text-sm text-gray-600"
+                            >
+                                {showPassword ? 'Hide' : 'Show'}
+                            </button>
+                        </div>
                         {formik.touched.password && formik.errors.password ? (
                             <div className="text-red-500 text-sm">{formik.errors.password}</div>
                         ) : null}
