@@ -1,34 +1,78 @@
-import ResearchPageTemplate from './ResearchPageTemplate';
+import ResearchPageTemplate from "./ResearchPageTemplate";
 
 export default function ResearchData() {
   return (
     <ResearchPageTemplate title="Research Data">
       <p>
-        Throughout the history of intelligence testing, ethnic minorities and individuals from lower socioeconomic backgrounds have consistently scored lower than white, middle-class counterparts. These disparities have long fueled debates regarding the causes and implications of such score differences.
+        <strong>Rethinking Intelligence Testing and Racial Disparities</strong>
       </p>
       <br />
+
       <p>
-        One of the most controversial claims originated from Jensen (1969) who argued in the Harvard Review that approximately 80% of IQ variance was genetic. Decades later, Herrnstein and Murray (1994) echoed similar ideas in their publication "The Bell Curve," suggesting racial IQ differences had a biological basis. While neither made overtly racist claims, their conclusions supported policies that targeted Black and Latino populations through proposed limitations on childbearing and immigration screening.
+        For decades, intelligence tests have shown that ethnic minorities and
+        people from lower-income backgrounds tend to score lower than white,
+        middle-class individuals. These patterns have sparked ongoing debates
+        about what causes these differences—and what they really mean.
       </p>
       <br />
+
       <p>
-        These views have since been widely refuted. Newer research has found that when variables like education, income, and environment are controlled, the gaps in IQ scores significantly diminish or disappear altogether. Alfano et al. (2016) emphasized that intelligence emerges from the interaction of multiple overlapping processes — not a single genetic trait — and must be interpreted within environmental contexts.
+        One of the most controversial arguments came from psychologist Arthur
+        Jensen in 1969. He claimed that up to 80% of the difference in IQ scores
+        was due to genetics. Years later, <em>The Bell Curve</em> by Herrnstein
+        and Murray (1994) suggested that racial differences in IQ might also
+        have a biological basis. While their writing avoided overtly racist
+        language, their conclusions supported policies that would have
+        negatively impacted Black and Latino communities, such as limiting
+        immigration or childbearing.
       </p>
       <br />
+
       <p>
-        Lawrence G. Weiss and Donald H. Saklofske conducted extensive analysis on the Wechsler scales and found that environmental factors “masquerade” as racial or ethnic IQ differences. For example, when parent education and income were statistically controlled in Wechsler scores, variance dropped by 65% for white children, 78% for Black children, and was entirely eliminated for Latinx children (Weiss, 2020).
+        These ideas have since been widely challenged and discredited. More
+        recent research shows that when you control for factors like education,
+        income, and living environment, IQ score differences across racial
+        groups shrink dramatically—or disappear entirely. For instance, Alfano
+        and colleagues (2016) stressed that intelligence is not a fixed trait
+        determined by genes. Instead, it’s shaped by many overlapping
+        influences, including one’s environment.
       </p>
       <br />
+
       <p>
-        Similarly, research by Diaz-Venegas et al. (2016) and Castora-Binkley et al. (2015) found equivalent cognitive performance across racial groups after controlling for age, education, gender, poverty, and health status. These findings suggest that socioeconomic and educational factors are primary contributors to test score differences.
+        Psychologists Lawrence Weiss and Donald Saklofske studied the popular
+        Wechsler IQ tests and found that what looked like racial IQ differences
+        were often really about environment. When they adjusted for factors like
+        parent education and income, score differences dropped by 65% for white
+        children, 78% for Black children, and completely vanished for Latinx
+        children (Weiss, 2020).
       </p>
       <br />
+
       <p>
-        The concept of “measurement invariance” has gained traction, arguing that a construct (like IQ) must be measured consistently across different groups to be valid. If a test’s results are influenced by group membership (race, culture, language), then its validity is compromised.
+        Other studies back this up. Research by Diaz-Venegas and Castora-Binkley
+        found that when researchers accounted for age, education, income,
+        gender, and health, cognitive performance across racial groups was
+        essentially the same. This shows that access to education and other
+        social conditions—not race—play the biggest role in shaping test
+        results.
       </p>
       <br />
+
       <p>
-        In short, the data shows that race and ethnicity alone do not account for disparities in test scores. Instead, the primary drivers are education access, income level, exposure to language and academic content, and culturally relevant test design.
+        There’s also growing recognition of a key concept called measurement
+        invariance. This means that for a test like an IQ test to be fair, it
+        needs to measure the same thing in the same way for all groups. If test
+        results change depending on someone’s race, culture, or language
+        background, the test’s fairness and accuracy are in question.
+      </p>
+      <br />
+
+      <p>
+        In summary: Race and ethnicity do not cause lower IQ scores. The real
+        drivers behind score differences are access to education, income level,
+        exposure to language and learning opportunities, and whether tests are
+        designed with cultural fairness in mind.
       </p>
     </ResearchPageTemplate>
   );
